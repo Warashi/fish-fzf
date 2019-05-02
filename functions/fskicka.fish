@@ -3,15 +3,15 @@ function fskicka
     while true
 	cat (echo "../"|psub) (skicka ls "$p"|psub) | eval (__fzfcmd) | read -l select
 	if test -z "$select"
-            return 1
+            return 0
 	end
 	
-	string join "" "$p" "$select" | read p
-	string sub -s -1 -l 1 "$p" | read -l suf
-	if test "$suf" = "/"
+	string join "" "$p" "$select" | read -l tmp
+	string sub -s -1 -l 1 "$tmp" | read -l suf
+	if test "$suf" != "/"
+	    skicka download "$tmp" ./
 	    continue
 	end
-	skicka download "$p" ./
-	return 0
+	set p $tmp
     end
 end
