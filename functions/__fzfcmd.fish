@@ -1,8 +1,5 @@
 function __fzfcmd
-    set -q FZF_TMUX; or set FZF_TMUX 0
-    if [ $FZF_TMUX -eq 1 ]
-        echo "fzf-tmux"
-    else
-        echo "fzf"
-    end
+    set -q FZF_CMD; or set FZF_CMD "fzf-tmux"
+    set -q FZF_DEFAULT_OPTIONS; or set FZF_DEFAULT_OPTIONS ""
+    echo $FZF_CMD $FZF_DEFAULT_OPTIONS
 end
