@@ -1,5 +1,6 @@
 function __fzf_ghq
-    ghq list --full-path | eval (__fzfcmd) | read -l select
+    set -q GHQ_OPTIONS; or set GHQ_OPTIONS ""
+    ghq list --full-path $GHQ_OPTIONS | eval (__fzfcmd) | read -l select
     if not test -z "$select"
         commandline -i $select
     end
